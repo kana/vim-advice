@@ -285,4 +285,3 @@ CHANGELOG					*advice-changelog*
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:fdm=marker:
-
