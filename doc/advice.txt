@@ -1,4 +1,4 @@
-*advice.txt*	alter the behavior of a command in modular way
+*advice.txt*	Alter the behavior of a command in modular way
 
 Version @@VERSION@@
 Copyright (C) 2008-2011 Kana Natsuno <http://whileimautomaton.net/>

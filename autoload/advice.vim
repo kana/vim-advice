@@ -1,4 +1,4 @@
-" advice - alter the behavior of a command in modular way
+" advice - Alter the behavior of a command in modular way
 " Version: @@VERSION@@
 " Copyright (C) 2008-2011 Kana Natsuno <http://whileimautomaton.net/>
 " License: So-called MIT/X license  {{{
