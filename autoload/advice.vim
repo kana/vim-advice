@@ -213,7 +213,7 @@ function! s:define_interface_mapping_in(modes, cmd_name)  "{{{2
     \   a:cmd_name
     \ )
   endfor
-  for mode in s:each_char('nvoci')
+  for mode in s:each_char('nvoci')  " NB: See [AFTER_HACK].
     execute printf(
     \   '%snoremap <expr> <Plug>(adviced:after:%s)  <SID>do_adviced_command_after(%s)',
     \   mode,
@@ -227,6 +227,7 @@ endfunction
 
 
 function! s:do_adviced_command_after(cmd_name)  "{{{2
+  " [AFTER_HACK]
   " After <Plug>(adviced:original:{cmd}), the mode may be chaned.  For
   " example, if <Plug>(adviced:original:{cmd}) is executed in Visual mode, the
   " following <Plug>(adviced:after:{cmd}) will be interpreted as a key mapping
