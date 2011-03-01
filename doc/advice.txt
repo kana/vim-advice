@@ -92,7 +92,7 @@ FUNCTIONS					*advice-functions*
 						*advice#define()*
 advice#define({cmd-name}, {modes}, {cmd-keyseq}, {need-remap-p}, {cmd-spec})
 			Define key mapping <Plug>(adviced-{cmd-name}) in the
-			specified {meds}.  The key mapping can be used to
+			specified {modes}.  The key mapping can be used to
 			execute adviced version of the specified Normal
 			command.
 
