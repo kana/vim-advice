@@ -191,21 +191,21 @@ endfunction
 function! s:define_interface_mapping_in(modes, cmd_name)  "{{{2
   for mode in s:each_char(a:modes)
     execute printf(
-    \   '%snoremap <expr> <Plug>(adviced-%s-before)  <SID>do_adviced_command_before(%s, "%s")',
+    \   '%snoremap <expr> <Plug>(adviced:before:%s)  <SID>do_adviced_command_before(%s, "%s")',
     \   mode,
     \   a:cmd_name,
     \   string(a:cmd_name),
     \   mode
     \ )
     execute printf(
-    \   '%snoremap <expr> <Plug>(adviced-%s-original)  <SID>do_adviced_command_original(%s, "%s")',
+    \   '%snoremap <expr> <Plug>(adviced:original:%s)  <SID>do_adviced_command_original(%s, "%s")',
     \   mode,
     \   a:cmd_name,
     \   string(a:cmd_name),
     \   mode
     \ )
     execute printf(
-    \   '%smap <Plug>(adviced-%s)  <Plug>(adviced-%s-before)<Plug>(adviced-%s-original)<Plug>(adviced-%s-after)',
+    \   '%smap <Plug>(adviced-%s)  <Plug>(adviced:before:%s)<Plug>(adviced:original:%s)<Plug>(adviced:after:%s)',
     \   mode,
     \   a:cmd_name,
     \   a:cmd_name,
@@ -215,7 +215,7 @@ function! s:define_interface_mapping_in(modes, cmd_name)  "{{{2
   endfor
   for mode in s:each_char('nvoci')
     execute printf(
-    \   '%snoremap <expr> <Plug>(adviced-%s-after)  <SID>do_adviced_command_after(%s)',
+    \   '%snoremap <expr> <Plug>(adviced:after:%s)  <SID>do_adviced_command_after(%s)',
     \   mode,
     \   a:cmd_name,
     \   string(a:cmd_name)
@@ -227,15 +227,15 @@ endfunction
 
 
 function! s:do_adviced_command_after(cmd_name)  "{{{2
-  " After <Plug>(adviced-{cmd}-original), the mode may be chaned.  For
-  " example, if <Plug>(adviced-{cmd}-original) is executed in Visual mode, the
-  " following <Plug>(adviced-{cmd}-after) will be interpreted as a key mapping
-  " defined in Normal mode.  So <Plug>(adviced-{cmd}-after) defined in Visual
+  " After <Plug>(adviced:original:{cmd}), the mode may be chaned.  For
+  " example, if <Plug>(adviced:original:{cmd}) is executed in Visual mode, the
+  " following <Plug>(adviced:after:{cmd}) will be interpreted as a key mapping
+  " defined in Normal mode.  So <Plug>(adviced:after:{cmd}) defined in Visual
   " mode will not be used.  This is a problem.
   "
   " To avoid the problem, we have to:
-  " - define <Plug>(adviced-{cmd}-after) in all modes,
-  " - memoize the mode of the previous <Plug>(adviced-{cmd}-original),
+  " - define <Plug>(adviced:after:{cmd}) in all modes,
+  " - memoize the mode of the previous <Plug>(adviced:original:{cmd}),
   " - and use the memoized mode here.
   " The mode is saved in s:previous_mode.
   if s:original_operator != ''
