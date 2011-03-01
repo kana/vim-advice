@@ -40,7 +40,7 @@ Changelog		|advice-changelog|
 ==============================================================================
 INTRODUCTION					*advice-introduction*
 
-*advice* is a library for Vim scripts to provide a modular way to alter the
+*advice* is a Vim library plugin to provide a modular way to alter the
 behavior of a command.
 
 For example, if you want to change the default register for the command |C| to
