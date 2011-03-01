@@ -1,5 +1,5 @@
 " advice - alter the behavior of a command in modular way
-" Version: 0.0.0
+" Version: @@VERSION@@
 " Copyright (C) 2008 kana <http://whileimautomaton.net/>
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
