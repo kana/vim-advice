@@ -51,14 +51,14 @@ change |C| in Visual mode to always behave as same as the default |C| in
 behaviors afterwards?  Therefore, redefining the whole command is not elegant
 way.
 
-ADVICE provides useful API to do such customization.
+ADVICE provides useful API to realize such customization.
 
 The concept of ADVICE is derived from the one of Emacs.  See also:
 <http://www.gnu.org/software/emacs/elisp/html_node/Advising-Functions.html>.
 Note that there are some differences from the one of Emacs, especially: there
 is no activation and ADVICE supports "usual" commands only (see
 |advice-Normal-command|).  Because Ex commands and functions cannot be
-supported only by Vim script.
+intercepted by pure Vim script.
 
 Requirements:
 - Vim 7.2 or later
@@ -150,8 +150,7 @@ advice#add({cmd-name}, {modes}, {class}, {ad-name}, {func-name}))
 
 			ADVICE maintins the list of advices for each Normal
 			command and for each {class}.  New advice is always
-			added as the first advice in a list.  (plan: a feature
-			to control the order of advices in a list.)
+			added as the first advice in a list.
 
 			If the advice {ad-name} is already defined for the
 			specified Normal command, its definition will be
@@ -252,6 +251,11 @@ With the above settings, |C| will be mapped as follows:
 ==============================================================================
 BUGS						*advice-bugs*
 
+- Basically, it's hard to solidly implement the concept of ADVICE in pure Vim
+  script.  There are many counterexamples to break the abstracted world
+  provided by ADVICE.  Please inform the author if you find such
+  counterexamples.
+
 - Adviced commands cannot be used while another adviced command is being
   executed.  For example, any adviced command in Operator-pending mode cannot
   be used if the currently pending operator is an adviced command.
@@ -270,7 +274,12 @@ BUGS						*advice-bugs*
 - |advice#enable_pattern()|, |advice#disable_pattern()| and
   |advice#remove_pattern()| are not supported currently.
 
-- There are many bugs around the world.
+- Support an option to remap or not to remap resulting key sequence of an
+  advice.
+
+- Support buffer-local advices.
+
+- |advice#add()|: Support an option to control the order of advices.
 
 
 
